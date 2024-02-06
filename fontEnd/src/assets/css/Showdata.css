@@ -1,0 +1,53 @@
+
+.contuner{
+    width: 100%;
+    height: 100vh;
+    background: #252121;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ .contuner .InnerBox{
+    width: 90%;
+    height: 80%;
+    background: #aaaaaa;
+    overflow: auto;
+    overflow-x: auto;
+}
+.InnerBox table{
+    width: 100%;
+}
+.InnerBox table, thead,td{
+    border-collapse: collapse;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #adc000;
+}
+thead{
+    background: rgb(27,50,256);
+    color: #fff;
+    font-weight: 800;
+}
+td{
+    font-size: 16px;
+}
+tr:nth-child(even){
+ background: #1c3120;
+ color: #f7e2e2;
+ transition: .5s ease;
+}
+tr:nth-child(even):hover{
+ background: #084aff;
+ color: #f7e2e2;
+ transform: scale(1.15);
+}
+tr:nth-child(odd){
+ background: #342e42;
+ color: #95ffac;
+ transition: .3s ease;
+}
+tr:nth-child(odd):hover{
+ background: #6725ff;
+ color: #fafcfb;
+ transform: scale(1.15);
+}
