@@ -5,6 +5,7 @@ const dotenv=require('dotenv');
 const path=require('path');
 const bodyParser = require('body-parser');
 const cooKieParser=require('cookie-parser');
+const cors=require('cors');
 
 //intrnal export
 const DBconnect=require('./server/database/dbConnect');
@@ -17,6 +18,9 @@ const PORT=process.env.PORT||8800;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cooKieParser());
 app.use(express.json());
+app.use(cors({
+    origin:'*',
+}))
 
 app.use('/',route)
 

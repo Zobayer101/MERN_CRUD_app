@@ -1,20 +1,46 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {FaRegUser} from "react-icons/fa";
 import {MdOutlineEmail} from "react-icons/md";
 import {IoMdKey} from "react-icons/io";
 import {FaFemale} from "react-icons/fa";
 import {FaMale} from "react-icons/fa";
+import { MdOutlineFileUpload } from "react-icons/md";
 import '../css/Signup.css'
 
 const Signup=()=>{
-    const [data,setData]=useState({name:'',email:'',password:'',gender:''});
+    const [data,setData]=useState({name:'',email:'',password:'',gender:'',avatar:''});
+    const filex =useRef()
     const onInput=(pro,value)=>{
         setData(previus=>({
             ...previus,
             [pro]:value
         }))
     }
-    const Fromsubmit=()=>{
+    const Fromsubmit=(e)=>{
+        e.preventDefault();
+        
+        console.log(filex.current.files[0])
+        var fx=filex.current.files[0]
+        setData(pre=>({
+            ...pre,
+            avatar:fx
+        }))
+        
+        fetch('http://localhost:3300/route/api/save',{
+            method:'post',
+            headers:{'Content-Type':'application/json',},
+            body:JSON.stringify(data)
+        })
+        .then((response)=>{
+            return response.json()
+        })
+        .then((result)=>{
+            alert(JSON.stringify(result))
+        })
+        .catch((error)=>{
+            alert(error.message)
+        })
+        
         alert(JSON.stringify(data))
     }
     return(
@@ -41,6 +67,17 @@ const Signup=()=>{
                         
                         <input onChange={(e)=>{onInput('password',e.target.value)}} value={data.password} type="password" placeholder=" password" />
                     </div>
+
+
+                     <div className="files">
+                        <div className="iconF">
+                            <MdOutlineFileUpload className="IconFile" />
+                            <input  ref={filex} type="file" name="avatar" />
+                        </div>
+                        
+                    </div>
+
+
                     <div className="gender">
                         <div className="male">
 

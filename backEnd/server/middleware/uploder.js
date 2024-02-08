@@ -3,10 +3,13 @@ const multer=require('multer');
 const path=require('path');
 
 
-const upPath='/public/img/profile'
+const upPath='/public/img/profile/';
+
+console.log('calling');
 
 const storage=multer.diskStorage({
     destination:(req,file,CB)=>{
+        console.log(file)
         CB(null,upPath)
     },
     filename:(req,file,CB)=>{
@@ -16,11 +19,16 @@ const storage=multer.diskStorage({
                                         .toLocaleLowerCase()
                                         .split(' ')
                                         .join('-') +"-"+ new Date.now();
+        CB(null,fieName+fieEx)
     }
 })
     let upload = multer({
         storage:storage,
+        limits:{
+            fileSize: 8000000,
+        },
         fileFilter:(req,file,CB)=>{
+            console.log(file)
             if(file.mimetype=='image/jpg'||
              file.mimetype=="image/png" || file.mimetype=='image/jpeg'){
                 CB(null,true)

@@ -32,14 +32,14 @@ td{
     font-size: 16px;
 }
 tr:nth-child(even){
- background: #1c3120;
+ background: #4e6452;
  color: #f7e2e2;
  transition: .5s ease;
 }
 tr:nth-child(even):hover{
  background: #084aff;
  color: #f7e2e2;
- transform: scale(1.15);
+ transform: scale(1.1);
 }
 tr:nth-child(odd){
  background: #342e42;
@@ -49,5 +49,5 @@ tr:nth-child(odd){
 tr:nth-child(odd):hover{
  background: #6725ff;
  color: #fafcfb;
- transform: scale(1.15);
+ transform: scale(1.1);
 }

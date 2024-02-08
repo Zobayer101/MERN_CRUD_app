@@ -1,6 +1,5 @@
-import Alluserdata from "./assets/components/Alluserdata"
 
-
+import Signup from './assets/components/Signup';
 
 
 function App() {
@@ -8,7 +7,7 @@ function App() {
 
   return (
     <>
-      <Alluserdata />
+      <Signup/>
     </>
   )
 }
