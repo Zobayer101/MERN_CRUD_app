@@ -11,7 +11,7 @@ const UserDB=require('../model/dbmodel');
 //post controller
 exports.postData=async(req,res)=>{
     try{
-        console.log(req.files)
+        console.log(req.body)
         const Pass=await bcrypt.hash(req.body.password,10);
         const user= new UserDB({
             name:req.body.name,
