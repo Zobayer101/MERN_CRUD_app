@@ -1,5 +1,8 @@
 
-import UP from './assets/components/UP';
+
+import Signup from './assets/components/Signup';
+
+
 
 
 
@@ -9,9 +12,9 @@ function App() {
 
   return (
     <>
-      <UP/>
+      <Signup/>
     </>
-  )
+  );
 }
 
 export default App

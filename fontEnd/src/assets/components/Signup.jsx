@@ -1,15 +1,21 @@
-import { useState } from "react";
+import {  useState } from "react";
 import {FaRegUser} from "react-icons/fa";
 import {MdOutlineEmail} from "react-icons/md";
 import {IoMdKey} from "react-icons/io";
-import {FaFemale} from "react-icons/fa";
-import axios from 'axios';
-import {FaMale} from "react-icons/fa";
+
+//import axios from 'axios';
+
 import { MdOutlineFileUpload } from "react-icons/md";
 import '../css/Signup.css'
 
 const Signup=()=>{
-    const [data,setData]=useState({name:'',email:'',password:'',gender:''});
+    const [data, setData] = useState({
+      name: "",
+      email: "",
+      password: "",
+      gender: "",
+      avatar:null,
+    });
     
     const onInput=(pro,value)=>{
         setData(previus=>({
@@ -17,34 +23,32 @@ const Signup=()=>{
             [pro]:value
         }))
     }
-     
-
-     const Fromsubmit=(e)=>{
-        e.preventDefault();
-        console.log(data)
-        axios.post('http://localhost:3300/route/api/save', data)
-        .then((response)=>{
-            console.log(response)
+    
+    
+     const Fromsubmit= (e)=>{
+         e.preventDefault();
+         
+          console.log(data)
+         fetch("http://localhost:3300/route/api/save", {
+          method: "post",
+           'Content-Type':'multipart/form-data',
+          body:JSON.stringify(data),
         })
-
-        
-        // fetch('http://localhost:3300/route/api/save',{
-        //     method:'post',
-        //     headers:{'Content-Type':'application/json',},
-        //     body:JSON.stringify(data)
-        // })
-        // .then((response)=>{
-        //     return response.json()
-        // })
-        // .then((result)=>{
-        //     alert(JSON.stringify(result))
-        // })
-        // .catch((error)=>{
-        //     alert(error.message)
-        // })
-        
-        alert(JSON.stringify(data))
+          .then((response) => {
+            return response.json();
+          })
+          .then((result) => {
+            console.log(result);
+            alert(JSON.stringify(result));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+       
+       
+    //    alert(JSON.stringify(data));
     }
+    
     return(
         <div>
             <div className="countuner">
@@ -83,8 +87,13 @@ const Signup=()=>{
                     <div className="gender">
                         <div className="male">
 
-                           <FaMale className="IconMale"/>
+                          
                             <input onChange={()=>{onInput('gender','Male')}} checked={data.gender=='Male'} type="radio" name="gender" />
+                        </div>
+                        <div className="female">
+
+                           
+                            <input onChange={()=>{onInput('gender','Female')}} checked={data.gender=='Female'} type="radio" name="gender" />
                         </div>
                         
                     </div>
