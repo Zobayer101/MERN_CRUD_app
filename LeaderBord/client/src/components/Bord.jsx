@@ -19,8 +19,9 @@ const Bord = () => {
                   }
                 );
                 let result = await response.json();
-                console.log("data useEffect");
-                setData(result.data);
+              console.log("data useEffect");
+              let data=Odear(result.data)
+                setData(data);
                 
             } catch (error) {
                 alert(JSON.stringify(error))
@@ -76,6 +77,16 @@ const DayCreate = (date) => {
   return date.getUTCDate() + date.getMonth() * 30;
 }
 
-// 
+// data revers shorting 
+const Odear = (array) => {
+  let i = array.length - 1;
+  let NewArray = [];
+  let j = 0;
+  for (i; i >= 0; i--){
+    NewArray[j] = array[i];
+    j++;
+  }
+  return NewArray;
+}
 
 export default Bord;
