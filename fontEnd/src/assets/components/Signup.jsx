@@ -14,7 +14,7 @@ const Signup=()=>{
       email: "",
       password: "",
       gender: "",
-      avatar:null,
+      avatar:'',
     });
     
     const onInput=(pro,value)=>{
@@ -27,11 +27,13 @@ const Signup=()=>{
     
      const Fromsubmit= (e)=>{
          e.preventDefault();
-         
+        
           console.log(data)
          fetch("http://localhost:3300/route/api/save", {
           method: "post",
-           'Content-Type':'multipart/form-data',
+             headers: {
+               'Content-Type': 'application/json'
+           },
           body:JSON.stringify(data),
         })
           .then((response) => {

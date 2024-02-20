@@ -1,49 +1,69 @@
 import '../css/Creae.css'
 import avatar from '../assets/img/profile.png'
 import { useState } from 'react';
+//import axios from 'axios';
+
+
 const Create = () => {
   //state initilize
   const [data, setData] = useState({ name: '', date: '', city: '', photo: '' });
   // data submit api url
-  const url = '';
+  const url = "http://localhost:3300/route/api/save";
     const handelChange = (value,propaty) => {
         setData((previus) => ({
             ...previus,
             [propaty]:value
         }))
-    }
+  }
+  var myfile;
     const ImgHandler = async (files) => {
         
-        const myfile = await ConverterBase64(files);
+        myfile = await ConverterBase64(files);
         
         setData({...data,photo:myfile})
   }
-  //submit data 
+  //submit data fun
+  // const SendBackend = async (data) => {
+  //   try {
+  //     console.log(data)
+  //     await axios.post(url,data)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+  //submit chack data 
   const submitData = () => {
+    
     const { name, date, city, photo } = data;
     if ([name && date && city && photo] == '') {
       alert(`you can't empty fild submitd`);
     } else {
       alert(`all is well `)
       // fetch api send data
+      //SendBackend(data);
       fetch(url, {
-        method: 'POST',
-        body:data
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
-      .then((response) => {
-        return response.json()
-      })
+        .then((response) => {
+          return response.json();
+        })
         .then((result) => {
-        console.log(result)
+          console.log(result);
         })
         .catch((error) => {
-        console.log(error)
-      })
+          console.log(error);
+        });
+     
     }
   }
-  console.log(`render page`)
+ 
     return (
       <>
+        
         <div className="outerContuner">
           <div className="countuner">
             <div className="scoundCon"></div>
@@ -55,6 +75,7 @@ const Create = () => {
                     ImgHandler(e.target.files[0]);
                   }}
                   id="file"
+                  accept=".png , .jpeg, .jpg "
                 />
                 <img src={data.photo || avatar} alt="" />
               </div>
@@ -86,11 +107,14 @@ const Create = () => {
                 placeholder="Enter your city name"
               />
               <div className="buttonSub">
-                <button onClick={submitData}>Submit</button>
+                <button  onClick={ submitData}>
+                  Submit
+                </button>
               </div>
             </div>
           </div>
         </div>
+        
       </>
     );
 }

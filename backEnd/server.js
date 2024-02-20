@@ -17,7 +17,7 @@ const PORT=process.env.PORT||8800;
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cooKieParser());
-app.use(express.json());
+app.use(express.json({limit:'10mb'}));
 app.use(cors({
     origin:'*',
 }))

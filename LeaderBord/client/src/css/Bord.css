@@ -1,0 +1,79 @@
+
+.leaderCon{
+    width: 100%;
+    height: 100vh;
+}
+.leaderCon .leaderbtn{
+    width: 100%;
+    display: flex;
+    height: 200px;
+    justify-content: space-around;
+    align-items: center;
+}
+.leaderbtn button{
+    height: 30px;
+    width: 60px;
+    background: rgb(143, 133, 140);
+    border: none;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: .5s ease;
+}
+.leaderbtn button:hover{
+    background: #3a2837;
+}
+.leaderCon .leaderMember{
+    width: 100%;
+    height: 100px;
+    border-bottom: 1.5px solid #a3a3a3;
+    box-shadow: 0 0 5px 0px #ffffffa2;
+    background: #251f1f;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    overflow: auto;
+    justify-content: space-between;
+}
+.leaderMember .leaderprofile{
+    height: 100%;
+    width: 250px;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: start;
+}
+.leaderprofile .imgs img  {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.leaderprofile .texts{
+    padding: 10px;
+}
+.leaderprofile .texts h4{
+    font-size: 18px;
+}
+.leaderprofile .texts p {
+    font-size: 14px;
+}
+.leaderMember .lederScure{
+    height: 100%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.leaderMember .lederScure h5{
+    font-size: 16px;
+}
+
+
+.Lodaing{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #19ff2c;
+    font-size: 25px;
+}
