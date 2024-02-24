@@ -64,18 +64,25 @@ const OtpVarifiy = () => {
     }
   }
   console.log(num)
-  var CreateAcount = async() => {
+  var CreateAcount = async () => {
+    let token = await localStorage.getItem('token');
+    console.log(token);
     let url = "http://localhost:3300/route/otp/api/chack";
     let responce = await fetch(url, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
+        "token":token
       },
       body: JSON.stringify(num),
     });
     let result = await responce.json();
-    result.data == 'ok' ? setNaviget(true) :
-      console.log(num);
+    if (result.data == 'ok') {
+      let Token = result.TOKEN
+      localStorage.setItem('TOKEN', Token)
+      setNaviget(true) 
+    }
+      console.log(result);
     alert(JSON.stringify(result.data))
     }
   if (naviget) {

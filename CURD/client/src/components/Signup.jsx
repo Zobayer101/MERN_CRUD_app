@@ -74,7 +74,7 @@ const Signup = () => {
      })
       let result = await response.json();
       if (result.data == 'ok') {
-        
+        localStorage.setItem("token", JSON.stringify(result.token));
         console.log('redirect ok')
         setNav(true)
         
