@@ -142,11 +142,15 @@ form .OuterConfrom .conform input:valid~span{
     align-items: center;
     justify-content: center;
  }
+ form .resgester  .btn{
+    color: #5a6359 !important;
+    cursor: not-allowed;
+ }
  
- form .resgester button{
+ form .resgester button{ 
     height: 40px;
     width: 30%;
-    background: #53aa5a;
+    background: #6cf378;
     color: #fff;
     font-size: 16px;
     border: none;
@@ -154,10 +158,13 @@ form .OuterConfrom .conform input:valid~span{
     font-weight: 600;
     transition: .4s;
  }
- form .resgester button:hover{
+ form .resgester  button:hover{
     box-shadow: 0 0 20px 3px #2ccf39;
-    background: #15e915;
+    background: #078507;
  }
+  form .resgester  .btn:hover{
+    color: #567553 !important;
+  }
  form .Have{
     height: 50px ;
     width: 100%;
@@ -170,3 +177,49 @@ form .OuterConfrom .conform input:valid~span{
   form .Have a{
     margin-left: 5px;
   }
+  .notMatch{
+    transform: translateY(-370px);
+    height: 60px;
+    width: 14em;
+    border: none ;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 99;
+    box-shadow: 0 0 10px 3px rgba(0,0,0,0.7);
+    background: #f0efef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s ;
+    animation: message 2s linear forwards;
+
+  }
+ .notMatchx p{
+    display: none;
+ }
+   .notMatch p{
+    display: block;
+    padding: 4px;
+    font-size: 16px;
+    color: rgb(255, 53, 53);
+   }
+   @keyframes message {
+    0%{
+        transform: translateY(-370px) scale(.6) ;
+    }
+    20%{
+        transform: translateY(-100px) scale(1) ;
+    }
+    /* 50%{
+        transform: translateY(-100px) scale(1) ;
+    }
+    70%{
+        transform: translateY(-100px) scale(1) ;
+    } */
+    90%{
+        transform: translateY(-100px) scale(1) ;
+    }
+    100%{
+         transform: translateY(-370px) scale(.6) ;
+    }
+   }

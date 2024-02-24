@@ -1,9 +1,13 @@
 import { IoShieldCheckmarkSharp } from "react-icons/io5";
-
+import { useNavigate } from "react-router-dom";
 import '../assets/css/Otp.css';
 import { useEffect, useRef, useState } from "react";
+
 const OtpVarifiy = () => {
-  let [num, setNum] = useState({ num1: '', num2: '', num3: '', num4: '' })
+  let [num, setNum] = useState({ num1: '', num2: '', num3: '', num4: '' });
+  let [naviget, setNaviget] = useState(false);
+  let naVigate= useNavigate()
+
   //input filds init
     let input = useRef();
     let input2 = useRef();
@@ -58,69 +62,82 @@ const OtpVarifiy = () => {
     } else {
       alert(' fild fillup ')
     }
-}
-    var CreateAcount = () => {
-        console.log(num)
+  }
+  console.log(num)
+  var CreateAcount = async() => {
+    let url = "http://localhost:3300/route/otp/api/chack";
+    let responce = await fetch(url, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(num),
+    });
+    let result = await responce.json();
+    result.data == 'ok' ? setNaviget(true) :
+      console.log(num);
+    alert(JSON.stringify(result.data))
     }
-    
-  
-  return (
-    <div>
-      <div className="otpCountner">
-        <div className="otpInnerCounter">
-          <div className="otpheader">
-            <div className="icon">
-              <IoShieldCheckmarkSharp className="sheld" />
-            </div>
-            <h2>Enter OTP Code</h2>
-          </div>
+  if (naviget) {
+    return naVigate('/');
+   }
+     return (
+       <div>
+         <div className="otpCountner">
+           <div className="otpInnerCounter">
+             <div className="otpheader">
+               <div className="icon">
+                 <IoShieldCheckmarkSharp className="sheld" />
+               </div>
+               <h2>Enter OTP Code</h2>
+             </div>
 
-          <form className="Form" action="#">
-            <div className="num">
-              <input
-                maxLength={1}
-                ref={input}
-                value={num.num1}
-                onChange={(e) => CounterFun(e.target.value, "num1")}
-                type="number"
-              />
-              <input
-                maxLength={1}
-                value={num.num2}
-                ref={input2}
-                onChange={(e) => CounterFun(e.target.value, "num2")}
-                name="bangla"
-                type="number"
-                disabled
-              />
-              <input
-                maxLength={1}
-                value={num.num3}
-                ref={input3}
-                onChange={(e) => CounterFun(e.target.value, "num3")}
-                type="number"
-                disabled
-              />
-              <input
-                maxLength={1}
-                value={num.num4}
-                ref={input4}
-                onChange={(e) => CounterFun(e.target.value, "num4")}
-                type="number"
-                disabled
-              />
-            </div>
-            <div className="subButton">
-              <button ref={subref} type="submit" onClick={CreateAcount}>
-                {" "}
-                verifyed OTP{" "}
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
+             <form className="Form" action="#">
+               <div className="num">
+                 <input
+                   maxLength={1}
+                   ref={input}
+                   value={num.num1}
+                   onChange={(e) => CounterFun(e.target.value, "num1")}
+                   type="number"
+                 />
+                 <input
+                   maxLength={1}
+                   value={num.num2}
+                   ref={input2}
+                   onChange={(e) => CounterFun(e.target.value, "num2")}
+                   name="bangla"
+                   type="number"
+                   disabled
+                 />
+                 <input
+                   maxLength={1}
+                   value={num.num3}
+                   ref={input3}
+                   onChange={(e) => CounterFun(e.target.value, "num3")}
+                   type="number"
+                   disabled
+                 />
+                 <input
+                   maxLength={1}
+                   value={num.num4}
+                   ref={input4}
+                   onChange={(e) => CounterFun(e.target.value, "num4")}
+                   type="number"
+                   disabled
+                 />
+               </div>
+               <div className="subButton">
+                 <button ref={subref} type="submit" onClick={CreateAcount}>
+                   {" "}
+                   verifyed OTP{" "}
+                 </button>
+               </div>
+             </form>
+           </div>
+         </div>
+       </div>
+     );
 };
 
 export default OtpVarifiy;
