@@ -1,0 +1,125 @@
+.proCon {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.proCon .proInCon {
+  width: 67%;
+  height: 70%;
+  background: #a43;
+
+  border: none;
+  box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+.proInCon .header {
+  width: 100%;
+  height: 20%;
+  background: #ca43ca;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.proInCon .header h2 {
+  color: rgb(255, 255, 217);
+  font-size: 26px;
+  margin-bottom: 35px;
+  user-select: none;
+  transition: 0.4s;
+}
+.proInCon .header h2:hover {
+  letter-spacing: 2px;
+  color: rgb(161, 44, 23);
+  text-shadow: 2px 5px 2px gray;
+}
+.proCon .proInCon .imgHead {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.proInCon .imgHead .img {
+  height: 115px;
+  width: 115px;
+  border-radius: 50%;
+
+  border: 6px solid #a43;
+  margin-bottom: 45px;
+}
+.imgHead .img img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.proInCon .InerFild {
+  width: 100%;
+  height: 65%;
+}
+.proInCon .InerFild .row1,
+.row2
+ {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.proInCon .InerFild .row1 .Fname,
+.row1 .Lname,
+.row2 .Email,
+.row2 .Barth {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.row1 .Fname span,
+.Email span,
+.Lname span,
+.Barth span {
+  width: 70%;
+  color: aqua;
+  font-size: 16px;
+  font-weight: 500;
+}
+ .InerFild .row1 .Fname input,.Lname input , .row2 input{
+    width: 70%;
+    height: 40px;
+    border: 2px solid #ddf;
+    border-radius: 4px;
+    font-size: 16px ;
+    color: rgb(9, 46, 9);
+    background: rgb(173, 168, 167);
+    outline: none;
+}
+ .InerFild .row3{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+  .InerFild .row3 button{
+    height: 3em ;
+    width: 7em;
+    border: none;
+    border-radius: 6px;
+    background: #ca43ca;
+    color: #fff;
+    letter-spacing: 1.5px ;
+    font-weight: 500;
+    transition: .4s ;
+    
+  }
+  .InerFild .row3 button:hover{
+    box-shadow: inset 0 0 5px 2px rgba(0, 0, 0, 0.5),
+     0 0 10px 2px rgb(190, 255, 215);
+  }

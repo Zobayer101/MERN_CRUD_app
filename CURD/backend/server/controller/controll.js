@@ -69,7 +69,7 @@ exports.varifiy = async (req, res) => {
             }, process.env.JWT_SECRET, {
               expiresIn: process.env.JWT_EXPERI,
             });
-            await UserDB.updateOne({ _id: data[0]._id }, { $set: { status: 'acctive' } });
+            await UserDB.updateOne({ _id: data[0]._id }, { $set: { status: 'active' } });
 
             res.status(200).json({
                 data: 'ok',
