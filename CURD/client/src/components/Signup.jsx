@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import '../assets/css/Signup.css';
 import avatar from "../assets/img/profile.png";
 import { NavLink,useNavigate } from "react-router-dom";
-import Cookies from 'js-cookie';
+
 
 const Signup = () => {
 
@@ -84,7 +84,7 @@ const Signup = () => {
       console.log(error.message)
     }
   }
-  console.log(nav)
+  
   if (nav) {
     return navigate("/OTP");
   }

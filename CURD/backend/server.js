@@ -14,7 +14,7 @@ const PORT = process.env.PORT||8800;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: '20mb' }));
 app.use(CookeParser());
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: "http://localhost:5173" }));
 
 app.use('/route', route);
 //Data base connection

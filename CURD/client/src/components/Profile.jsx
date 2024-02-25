@@ -1,12 +1,14 @@
 import "../assets/css/Profile.css";
 import image from "../assets/img/profile.png";
+import Modal from "./Modal";
 
-const Profile = () => {
+const Profile = ({open,setOpen}) => {
   return (
     <div>
       <div className="proCon">
         <div className="proInCon">
           <div className="header">
+            <div onClick={()=> Modal(open,setOpen)} className="crose">&#x274C;</div>
             <h2>Profile</h2>
           </div>
           <div className="imgHead">
