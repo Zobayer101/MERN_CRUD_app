@@ -20,8 +20,8 @@ exports.validUser = (req, res, next) => {
       })
     } else {
         let randomnum = Math.random() * 9000;
-        let OTP = Math.floor(randomnum) - 1;
-        req.OTP = OTP;
+        let OTP = Math.floor(randomnum) + 1000;
+        req.OTP = OTP
         next()
     }
 }

@@ -63,14 +63,15 @@ exports.ReadData = async (req, res) => {
 exports.varifiy = async (req, res) => {
   try {
     let Token = req.headers.token;
-
+    
     let ID = Token.split(`"`)[1];
+    
     let Oj = req.body;
     let newotp = `${Oj.num1}${Oj.num2}${Oj.num3}${Oj.num4}`;
-
     let data = await UserDB.find({ _id: ID });
-
+    
     let DBotp = data[0].OTP;
+    
     if (newotp == DBotp) {
       let TOKEN = JWT.sign(
         {
@@ -93,7 +94,7 @@ exports.varifiy = async (req, res) => {
       });
     } else {
       res.status(409).json({
-        data: `OTP dos't match!`,
+        msg: `OTP dos't match!`,
       });
     }
   } catch (error) {

@@ -54,7 +54,7 @@ const Admin = () => {
       });
       let result = await res.json();
       if (result.data) {
-        console.log(result.data);
+       
         setAlldata((existdata) => {
           return existdata.filter((_, currentIndex) => currentIndex !== index);
         });
@@ -66,8 +66,7 @@ const Admin = () => {
       console.log(error);
     }
   };
-  console.log(user);
-
+  
   if (!alldata) return <h2>Loading...</h2>;
   else if (alldata.msg) {
     localStorage.removeItem("TOKEN");

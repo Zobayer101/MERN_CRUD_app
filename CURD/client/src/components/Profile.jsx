@@ -77,8 +77,9 @@ const Profile = ({ open, setOpen, ID }) => {
       body:JSON.stringify(update),
     })
     let result = await res.json();
-    console.log(result)
-      alert('OK')
+      if (result) {
+           alert('OK')
+      }
     } catch (error) {
       console.log(error.message)
     }
