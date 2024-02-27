@@ -65,7 +65,7 @@ const OtpVarifiy = () => {
   }
   console.log(num)
   var CreateAcount = async () => {
-    let token = await localStorage.getItem('token');
+    let token = localStorage.getItem('token');
     console.log(token);
     let url = "http://localhost:3300/route/otp/api/chack";
     let responce = await fetch(url, {

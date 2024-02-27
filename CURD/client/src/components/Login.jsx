@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "../assets/css/Login.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -21,11 +21,13 @@ const Login = () => {
     })
     let result = await response.json();
     if (result.data) {
-      let TOKEN = data.token;
-      localStorage.setItem("TOKEN", TOKEN);
+
+      let TOKEN =result.token;
+      localStorage.setItem("TOKEN", JSON.stringify(TOKEN));
       navigate("/");
     } else {
-      alert(JSON.stringify(result.msg))
+      alert(JSON.stringify(result.msg));
+      navigate("/signup");
     }
     
   }
@@ -35,6 +37,12 @@ const Login = () => {
       [propaty]:value
       }))
   }
+  useEffect(() => {
+     let ismember = localStorage.getItem("TOKEN");
+     if (ismember) return navigate("/");
+    
+  })
+ 
   return (
     <div>
       <div className="outLogin">

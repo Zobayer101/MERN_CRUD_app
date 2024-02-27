@@ -38,13 +38,19 @@ exports.CreateData = async (req, res) => {
 // all data read
 exports.ReadData = async (req, res) => {
   try {
+    
     let data = await UserDB.find(
       {},
       { photo: 0, OTP: 0, status: 0, password: 0 }
     );
-
+    let user = await UserDB.findOne(
+      { _id: req.userID },
+      { OTP: 0, status: 0, password: 0, __v: 0, email: 0, lname: 0 }
+    );
+ 
     res.status(200).json({
       data: data,
+      user: user, 
     });
   } catch (error) {
     res.status(409).json({
@@ -78,7 +84,7 @@ exports.varifiy = async (req, res) => {
       );
       await UserDB.updateOne(
         { _id: data[0]._id },
-        { $set: { status: "active" } }
+        { $set: { status: "active" ,OTP:''} }
       );
 
       res.status(200).json({
@@ -98,8 +104,10 @@ exports.varifiy = async (req, res) => {
 //One user data read api
 exports.OneUserData = async (req, res) => {
   try {
-    let ID = req.userID;
-    data = await UserDB.find({ _id: ID }, { OTP: 0, status: 0 });
+    let ID = req.headers.id;
+
+    data = await UserDB.find({ _id: ID }, { OTP: 0, status: 0, password: 0 });
+
     res.status(200).json({ data: data });
   } catch (error) {
     res.status(409).json({
@@ -116,7 +124,7 @@ exports.LoginUser = async (req, res) => {
       { email: email },
       { OTP: 0, photo: 0, status: 0 }
     );
-    console.log(data);
+    // console.log(data);
     if (data) {
       let isvalid = await bcrypt.compare(password, data.password);
       if (isvalid) {
@@ -128,10 +136,13 @@ exports.LoginUser = async (req, res) => {
           process.env.JWT_SECRET,
           { expiresIn: process.env.JWT_EXPERI }
         );
+
         res.status(200).json({
-          data:'ok',
+          data: "ok",
           token: token,
         });
+      } else {
+        res.status(401).json({ msg: "Authentication fiald !" });
       }
     } else {
       res.status(405).json({ msg: "user not found" });
@@ -140,5 +151,38 @@ exports.LoginUser = async (req, res) => {
     res.status(409).json({
       msg: error,
     });
+  }
+};
+
+//update user api controller
+exports.updateUser = async (req, res) => {
+  try {
+    let ID = req.headers.id;
+    let data = await UserDB.findByIdAndUpdate(ID, req.body, {
+      useFindAndModify: false,
+    });
+    res.status(200).json({ data: data });
+  } catch (error) {
+    res.status(409).json({
+      msg: error.message,
+    });
+    console.log(error.message);
+  }
+};
+
+//Remove user data api controller
+exports.RemoveData = async (req, res) => {
+  try {
+    let ID = req.headers.id;
+    //console.log(ID)
+    await UserDB.findByIdAndDelete(ID);
+    res.status(200).json({
+      data: "delete successfully!",
+    });
+  } catch (error) {
+    res.status(409).json({
+      msg: error,
+    });
+    console.log(error.message);
   }
 };
