@@ -9,7 +9,8 @@ const SendMail = async (userName, userMail,OTP) => {
           auth: {
             user: process.env.GMAIL,
             pass: process.env.PASSWORD,
-          },
+            },
+          debug:true
         });
         let mailGenarator = new mailgen({
             theme: 'default',
@@ -39,7 +40,7 @@ const SendMail = async (userName, userMail,OTP) => {
             html:mail,
         })
 
-        return info;
+        return info; 
         
     } catch (error) {
         console.log(error.message);
